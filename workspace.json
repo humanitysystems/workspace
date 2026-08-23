@@ -1,0 +1,16 @@
+{
+  "$schema": "https://wazootech.github.io/workspace-cli/schema.json",
+  "schemaVersion": 2,
+  "repositories": [
+    {
+      "name": "humanitypedia",
+      "url": "https://github.com/humanitysystems/humanitypedia.git",
+      "groups": ["company-brain"]
+    },
+    {
+      "name": "warrant",
+      "url": "https://github.com/humanitysystems/warrant.git",
+      "groups": ["flagship"]
+    }
+  ]
+}

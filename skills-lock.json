@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "wspace": {
+      "source": "../../AppData/Local/Temp/opencode/wspace-skill",
+      "sourceType": "local",
+      "computedHash": "68bb26fb0f25430e2e97e1a1dad7524d0397b8a77e06e8b085ae1920335b88e1"
+    }
+  }
+}

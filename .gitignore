@@ -1,0 +1,5 @@
+# Managed checkouts, feature worktrees, and the local secrets vault
+# are gitignored: they live in this workspace but never enter its history.
+repos/
+worktrees/
+secrets/
