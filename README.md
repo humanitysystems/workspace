@@ -1,7 +1,7 @@
 # Humanity Systems workspace
 
 Multi-repo workspace for [Humanity Systems](https://github.com/humanitysystems),
-powered by [`wspace`](https://github.com/wazootech/workspace-cli) — a git-native
+powered by [`works`](https://github.com/wazootech/workspace-cli) — a git-native
 workspace CLI. This repository holds the manifest and working rules; the actual
 checkouts are cloned (never committed) into `repos/`.
 
@@ -17,9 +17,9 @@ checkouts are cloned (never committed) into `repos/`.
 ```
 humanitysystems/
 ├── workspace.json    # Manifest: the single source of truth for repo membership
-├── repos/            # Canonical checkouts (gitignored, managed by wspace)
+├── repos/            # Canonical checkouts (gitignored, managed by works)
 ├── worktrees/        # Feature worktrees (gitignored, one branch per directory)
-└── secrets/          # Local env vault (gitignored; source for wspace env sync)
+└── secrets/          # Local env vault (gitignored; source for works env sync)
 ```
 
 ## Setup
@@ -27,23 +27,23 @@ humanitysystems/
 Requires [Deno](https://deno.com) 2+.
 
 ```bash
-deno install -g --name wspace jsr:@wazoo/workspace
-wspace init   # clone any missing repos from the manifest
-wspace check  # verify everything is clean
+deno install -g --name works jsr:@wazoo/workspace
+works init   # clone any missing repos from the manifest
+works check  # verify everything is clean
 ```
 
 ## Daily workflow
 
 ```bash
-wspace check                       # read-only baseline: CLEAN / DIRTY / DIVERGED ...
-wspace update                      # fetch + fast-forward clean default branches only
-wspace worktree add warrant feat   # feature work under worktrees/warrant/feat/
+works check                       # read-only baseline: CLEAN / DIRTY / DIVERGED ...
+works update                      # fetch + fast-forward clean default branches only
+works worktree add warrant feat   # feature work under worktrees/warrant/feat/
 cd worktrees/warrant/feat          # develop here, never on the canonical checkout
 git push -u origin feat && gh pr create
-wspace worktree list --stale       # find merged branches after PRs land
-wspace worktree remove warrant feat
-wspace env sync                    # copy secrets/secrets/* into checkouts & worktrees
+works worktree list --stale       # find merged branches after PRs land
+works worktree remove warrant feat
+works env sync                    # copy secrets/secrets/* into checkouts & worktrees
 ```
 
-`wspace update` is conservative by design: it never resets, rebases, stashes,
+`works update` is conservative by design: it never resets, rebases, stashes,
 or rewrites history, and it skips dirty repositories and feature branches.
