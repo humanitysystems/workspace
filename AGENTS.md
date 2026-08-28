@@ -1,52 +1,39 @@
-# AGENTS.md — Humanity Systems workspace
+# Humanity Systems workspace guide
 
-This directory is a [`works`](https://github.com/wazootech/workspace-cli)
-workspace. The manifest (`workspace.json`) defines repo membership; canonical
-checkouts live in `repos/`, feature work in isolated worktrees under
-`worktrees/`.
+This workspace root (`humanitysystems/workspace`) federates Humanity Systems repositories via [`workspace.json`](workspace.json).
 
-## Rules
+## Context routing
 
-1. **Worktree-first, always.** Never edit a canonical checkout in `repos/`.
-   All changes happen inside `worktrees/<repo>/<feature>/`, created with
-   `works worktree add <repo> <feature>`. This is the only path — not an
-   option.
-2. **Single-round-trip discovery.** Use `works check --json` instead of
-   probing each repo with `git status`. One call answers: which repos exist,
-   their branch, dirty state, and divergence.
-3. **Conservative sync.** `works update` only fast-forwards clean default
-   branches. It never resets, rebases, stashes, or rewrites history. If
-   something is `DIRTY` or on a feature branch, that is intentional — surface
-   it to the human instead of "fixing" it.
-4. **Baseline branching.** Feature worktrees branch from `origin/<default>`,
-   never from local `HEAD`, so features always start from the remote baseline.
-5. **Secrets stay local.** Environment files come from the gitignored
-   `secrets/` vault via `works env sync` (use `--dry-run` first). Never
-   commit secrets, never write env files outside checkouts/worktrees.
-6. **Exit code contract.** `works check` exits 0 when clean, 1 otherwise.
-   Pipeline on it; do not interpret "looks fine."
+Do not duplicate child repo guidance here. Route to local docs and source code:
 
-## Lifecycle
+- **Child repos**: Read local `AGENTS.md`, `README.md`, or `skills/` before working inside any child directory under `repos/` (e.g. `repos/humanitypedia`, `repos/warrant`).
+- **Workspace CLI**: Use `works check --json` for discovery and `works update` for conservative sync.
 
-```
-works check
-works update
-works worktree add <repo> <feature>
-# ...develop in worktrees/<repo>/<feature>, commit...
-git push -u origin <feature> && gh pr create
-# after merge:
-works worktree list --stale
-works worktree remove <repo> <feature>
-```
+## Core rules
 
-## Hard boundaries (require explicit human approval)
+### Manifest membership
 
-- Deploying or publishing any artifact
-- Creating or deleting repositories, including manifest membership changes
-- Anything touching `main` directly (pushes, resets, force-operations)
+- [`workspace.json`](workspace.json) is the single source of truth for allowlisted repositories checked out under `repos/`.
 
-## Adding a repository
+### Feature worktrees
 
-Edit `workspace.json` (append to `repositories`), then run `works init`.
-Never clone repos into `repos/` by hand — unmanaged checkouts are reported as
-`UNMANAGED` by `works check`.
+- Develop features in parallel worktrees using absolute workspace root paths:
+  ```sh
+  git -C repos/<repo> worktree add "$PWD/worktrees/<repo>/<feature-slug>" -b <feature-slug>
+  ```
+- Clean up when finished:
+  ```sh
+  git -C repos/<repo> worktree remove "$PWD/worktrees/<repo>/<feature-slug>"
+  git -C repos/<repo> worktree prune
+  ```
+
+### Local secrets
+
+- Never edit or commit `.env` files in `repos/` or `worktrees/`.
+- Central `secrets/<repo>/` vault at the workspace root is the single source of truth for local credentials.
+
+### Hard boundaries (human approval required)
+
+- Creating or deleting repositories or manifest entries.
+- Pushing directly to `main` (resets, force operations).
+- Deploying or publishing artifacts.
