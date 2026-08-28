@@ -3,3 +3,9 @@
 repos/
 worktrees/
 secrets/
+
+# Local tool caches and dev logs
+.freebuff/
+*.log
+demo-pids.txt
+opencode.json
