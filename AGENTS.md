@@ -7,7 +7,7 @@ This workspace root (`humanitysystems/workspace`) federates Humanity Systems rep
 Do not duplicate child repo guidance here. Route to local docs and source code:
 
 - **Child repos**: Read local `AGENTS.md`, `README.md`, or `skills/` before working inside any child directory under `repos/` (e.g. `repos/humanitypedia`, `repos/warrant`).
-- **Workspace CLI**: Use `works check --json` for discovery and `works update` for conservative sync.
+- **Workspace CLI**: Use `wspace check --json` for discovery and `wspace update` for conservative sync.
 
 ## Core rules
 
