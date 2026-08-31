@@ -6,6 +6,8 @@ This workspace root (`humanitysystems/workspace`) federates Humanity Systems rep
 
 Do not duplicate child repo guidance here. Route to local docs and source code:
 
+**⚠ Worktree isolation always applies.** Even if a child repo's `AGENTS.md` does not mention worktrees, the hard boundary in this file (below) is in effect. If your cwd is inside `repos/<repo>/` and you need to make code changes, stop and create a worktree first.
+
 - **Child repos**: Read local `AGENTS.md`, `README.md`, or `skills/` before working inside any child directory under `repos/` (e.g. `repos/humanitypedia`, `repos/warrant`).
 - **Workspace CLI**: Use `wspace check --json` for discovery and `wspace update` for conservative sync.
 
@@ -31,6 +33,18 @@ Do not duplicate child repo guidance here. Route to local docs and source code:
 
 - Never edit or commit `.env` files in `repos/` or `worktrees/`.
 - Central `secrets/<repo>/` vault at the workspace root is the single source of truth for local credentials.
+
+### Worktree isolation (hard boundary)
+
+All feature work must happen in a worktree (`worktrees/<repo>/<feature>`). Never create branches or commit directly inside `repos/<repo>`. This is a hard boundary — if an agent's cwd is inside `repos/<repo>`, it must create a worktree and `cd` into it before making any changes.
+
+When any skill produces code changes that need to be applied to a child repo, the agent must:
+
+1. Check if cwd is inside `repos/<repo>/` — if so, stop.
+2. Create a worktree: `wspace worktree add <repo> <feature-slug>` from the workspace root.
+3. `cd` into the worktree before making any edits.
+4. Never commit or push from inside `repos/<repo>/`.
+
 
 ### Hard boundaries (human approval required)
 
