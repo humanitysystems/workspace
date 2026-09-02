@@ -9,3 +9,6 @@ secrets/
 *.log
 demo-pids.txt
 opencode.json
+
+# Agent scratch sessions
+session-*.md
