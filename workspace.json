@@ -6,6 +6,11 @@
       "name": "warrant",
       "url": "https://github.com/humanitysystems/warrant.git",
       "groups": ["flagship"]
+    },
+    {
+      "name": "memory",
+      "url": "https://github.com/humanitysystems/memory.git",
+      "groups": ["memory"]
     }
   ]
 }
