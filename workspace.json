@@ -11,6 +11,11 @@
       "name": "memory",
       "url": "https://github.com/humanitysystems/memory.git",
       "groups": ["memory"]
+    },
+    {
+      "name": "emet",
+      "url": "https://github.com/humanitysystems/emet.git",
+      "groups": ["agents"]
     }
   ]
 }
