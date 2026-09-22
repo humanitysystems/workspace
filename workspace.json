@@ -5,17 +5,30 @@
     {
       "name": "warrant",
       "url": "https://github.com/humanitysystems/warrant.git",
-      "groups": ["flagship"]
+      "groups": [
+        "flagship"
+      ]
     },
     {
       "name": "memory",
       "url": "https://github.com/humanitysystems/memory.git",
-      "groups": ["memory"]
+      "groups": [
+        "memory"
+      ]
     },
     {
       "name": "emet",
       "url": "https://github.com/humanitysystems/emet.git",
-      "groups": ["agents"]
+      "groups": [
+        "agents"
+      ]
+    },
+    {
+      "name": ".github",
+      "url": "https://github.com/humanitysystems/.github.git",
+      "groups": [
+        "org"
+      ]
     }
   ]
 }
