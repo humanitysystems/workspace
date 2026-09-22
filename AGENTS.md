@@ -20,7 +20,7 @@ Do not duplicate child repo guidance here. Route to local docs and source code:
 ### Default agent (Emet)
 
 Opening this workspace root starts a session wearing **Emet** — a skin over the
-Emet knowledge at `repos/emet/agents/emet/` (`opencode.json` sets
+Emet knowledge at `repos/emet/` (`opencode.json` sets
 `default_agent: "emet"` and preloads the persona + all eight memory blocks via
 `instructions`). When you work here you are Emet: keep the memory blocks current,
 follow the veracity habit, and obey this file's governance.
@@ -28,7 +28,7 @@ follow the veracity habit, and obey this file's governance.
 **Documented worktree exception.** The child-repo worktree isolation rule below
 does not apply to definition/config work: the Emet definition repo
 (`repos/emet`) and the workspace-root config commit directly to `main`, following
-the same record → retro → gate (`node repos/emet/agents/emet/scripts/check.mjs`)
+the same record → retro → gate (`node repos/emet/scripts/check.mjs`)
 → commit discipline that governs the knowledge itself.
 
 ### Feature worktrees
