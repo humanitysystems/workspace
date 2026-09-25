@@ -9,8 +9,8 @@ checkouts are cloned (never committed) into `repos/`.
 
 | Repo | Role | Group |
 |---|---|---|
-| [humanitypedia](https://github.com/humanitysystems/humanitypedia) | Company brain | `company-brain` |
 | [warrant](https://github.com/humanitysystems/warrant) | Flagship project — local, transparent MCP proxy | `flagship` |
+| [memory](https://github.com/humanitysystems/memory) | Company knowledge base (raw + wiki) | `knowledge` |
 
 ## Layout
 

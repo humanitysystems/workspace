@@ -8,7 +8,7 @@ Do not duplicate child repo guidance here. Route to local docs and source code:
 
 **⚠ Worktree isolation always applies.** Even if a child repo's `AGENTS.md` does not mention worktrees, the hard boundary in this file (below) is in effect. If your cwd is inside `repos/<repo>/` and you need to make code changes, stop and create a worktree first.
 
-- **Child repos**: Read local `AGENTS.md`, `README.md`, or `skills/` before working inside any child directory under `repos/` (e.g. `repos/humanitypedia`, `repos/warrant`).
+- **Child repos**: Read local `AGENTS.md`, `README.md`, or `skills/` before working inside any child directory under `repos/` (e.g. `repos/memory`, `repos/warrant`).
 - **Workspace CLI**: Use `wspace check --json` for discovery and `wspace update` for conservative sync.
 
 ## Core rules
